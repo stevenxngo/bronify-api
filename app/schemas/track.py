@@ -4,15 +4,11 @@ from typing import Optional
 
 
 class TrackBase(BaseModel):
-    filename: str
     title: str
     artist: Optional[str] = None
-    source_url: Optional[HttpUrl] = None
-    format: str = "mp3"
-
-
-class TrackCreate(TrackBase):
-    pass
+    original_title: Optional[str] = None
+    original_artist: Optional[str] = None
+    url: Optional[HttpUrl] = None
 
 
 class TrackResponse(TrackBase):
