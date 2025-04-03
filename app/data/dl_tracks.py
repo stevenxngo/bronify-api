@@ -2,7 +2,7 @@ import csv
 import sys
 import yt_dlp
 from pathlib import Path
-from ..log import get_logger
+from app.log import get_logger
 
 logger = get_logger()
 

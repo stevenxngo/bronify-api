@@ -1,10 +1,10 @@
 from pathlib import Path
 import pandas as pd
 from sqlalchemy.orm import Session
-from .database import engine, Base
-from ..models.track import Track
-from ..models.artist import Artist
-from ..models.original_artist import OriginalArtist
+from app.data.database import engine, Base
+from app.models.track import Track
+from app.models.artist import Artist
+from app.models.original_artist import OriginalArtist
 
 BASE_DIR = Path(__file__).resolve().parent
 
