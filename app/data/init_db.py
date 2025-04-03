@@ -23,10 +23,8 @@ def import_csv():
             db.add(Artist(name=artist))
 
     unique_original_artists = tracks_df["original_artist"].unique()
-    print(unique_original_artists)
     for original_artist in unique_original_artists:
         if not pd.isna(original_artist):
-            print(original_artist)
             existing_original_artist = (
                 db.query(OriginalArtist).filter_by(name=original_artist).first()
             )
