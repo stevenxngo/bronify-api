@@ -1,12 +1,15 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./bronify.db")
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'bronify.db'}")
 
 engine = create_engine(
     DATABASE_URL,
