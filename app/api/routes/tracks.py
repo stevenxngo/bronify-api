@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from app.dependencies import get_db
-from app.schemas.track import TrackBase, TrackResponse
+from app.schemas.track import TrackResponse
 from app.crud.track import (
     get_all,
     get_track_info,
@@ -15,7 +15,7 @@ BASE_DIR = PathLib(__file__).resolve().parent.parent.parent
 router = APIRouter()
 
 
-@router.get("/all", response_model=list[TrackBase])
+@router.get("/all", response_model=list[TrackResponse])
 def fetch_all_tracks(db: Session = Depends(get_db)):
     tracks = get_all(db)
     if not tracks:

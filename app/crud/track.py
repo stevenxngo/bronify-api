@@ -6,7 +6,7 @@ from app.schemas.track import TrackBase, TrackResponse
 def get_all(db: Session):
     tracks = db.query(Track).all()
     return [
-        TrackBase.from_orm(track)
+        TrackResponse.from_orm(track)
         for track in tracks
     ]
 
