@@ -41,24 +41,32 @@ Simple audio streaming API that stores and plays Lebron James' parodies of popul
 
 ## Setup and Running Locally
 
-# 1. Clone the repo
+### 1. Clone the repo
 
+```bash
 git clone https://github.com/stevenxngo/bronify.git
 cd bronify
+```
 
-# 2. Create and activate a virtualenv
+### 2. Create and activate a virtualenv
 
+```bash
 python -m venv venv
 source venv/bin/activate
+```
 
-# 3. Install dependencies
+### 3. Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-# 4. Run the app
+### 4. Run the app
 
+```bash
 uvicorn app.main:app --reload
+```
 
 ## License
 
-This project is open-sourced under the [MIT License](https://opensource.org/licenses/MIT).
+This project is open-sourced under the [MIT License](/LICENSE).
