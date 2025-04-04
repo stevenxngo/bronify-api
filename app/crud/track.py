@@ -15,10 +15,17 @@ def get_track_info(db: Session, track_id: int):
     return TrackResponse.from_orm(track)
 
 
-def get_track_filename(db: Session, track_id: int):
+def get_all_files(db: Session):
+    tracks = db.query(Track).all()
+    if not tracks:
+        return []
+    return [f"{track.filename}.{track.format}" for track in tracks]
+
+
+def get_track_file(db: Session, track_id: int):
     track = db.query(Track).filter(Track.id == track_id).first()
-    track_filename = f"{track.filename}.{track.format}" if track else None
-    return track_filename
+    track_file = f"{track.filename}.{track.format}" if track else None
+    return track_file
 
 
 def get_artist_tracks(db: Session, artist_id: int):
