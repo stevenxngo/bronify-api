@@ -14,7 +14,7 @@ def get_track_info(db: Session, track_id: int):
     track = db.query(Track).filter(Track.id == track_id).first()
     if not track:
         return None
-    return TrackBase.from_orm_with_artists(track)
+    return TrackResponse.from_orm(track)
 
 def get_track_filename(db: Session, track_id: int):
     track = db.query(Track).filter(Track.id == track_id).first()

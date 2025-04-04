@@ -28,5 +28,11 @@ class TrackBase(BaseModel):
 class TrackResponse(TrackBase):
     play_url: Optional[str] = None
 
+    @classmethod
+    def from_orm(cls, obj):
+        base_data = super().from_orm(obj).dict()
+        base_data["play_url"] = f"/track/play/{obj.id}"
+        return cls.model_validate(base_data)
+
     class Config:
         from_attributes = True

@@ -23,8 +23,8 @@ def fetch_all_tracks(db: Session = Depends(get_db)):
     return tracks
 
 
-@router.get("/info/{track_id}", response_model=TrackBase)
-def fetch_track(
+@router.get("/info/{track_id}", response_model=TrackResponse)
+def fetch_track_info(
     track_id: int = Path(..., title="Track ID"), db: Session = Depends(get_db)
 ):
     track = get_track_info(db, track_id)
