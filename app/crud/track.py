@@ -21,6 +21,13 @@ def get_track_filename(db: Session, track_id: int):
     return track_filename
 
 
+def get_artist_tracks(db: Session, artist_id: int):
+    tracks = db.query(Track).filter(Track.artist_id == artist_id).all()
+    if not tracks:
+        return []
+    return [TrackResponse.from_orm(track) for track in tracks]
+
+
 def get__og_artist_tracks(db: Session, og_artist_id: int):
     tracks = (
         db.query(Track).filter(Track.original_artist_id == og_artist_id).all()
