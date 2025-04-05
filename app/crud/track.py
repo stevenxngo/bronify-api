@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.track import Track
+from app.models import Track, Artist, OriginalArtist
 from app.schemas.track import TrackResponse
 
 
@@ -41,4 +41,24 @@ def get__og_artist_tracks(db: Session, og_artist_id: int):
     )
     if not tracks:
         return []
+    return [TrackResponse.from_orm(track) for track in tracks]
+
+
+def filter_tracks(db: Session, query: str):
+    tracks = (
+        db.query(Track)
+        .join(Artist)
+        .join(OriginalArtist)
+        .filter(
+            Track.title.ilike(f"%{query}%")
+            | Artist.name.ilike(f"%{query}%")
+            | Track.original_title.ilike(f"%{query}%")
+            | OriginalArtist.name.ilike(f"%{query}%")
+        )
+        .all()
+    )
+
+    if not tracks:
+        return []
+
     return [TrackResponse.from_orm(track) for track in tracks]

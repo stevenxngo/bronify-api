@@ -10,6 +10,7 @@ from app.crud.track import (
     get_track_info,
     get_all_files,
     get_track_file,
+    filter_tracks,
 )
 
 BASE_DIR = PathLib(__file__).resolve().parent.parent.parent
@@ -50,7 +51,7 @@ def play_track(
     )
 
 
-@router.get("/random")
+@router.get("/random", response_class=FileResponse)
 def play_random_track(db: Session = Depends(get_db)):
     tracks = get_all_files(db)
     if not tracks:
@@ -65,3 +66,9 @@ def play_random_track(db: Session = Depends(get_db)):
         media_type="audio/mpeg",
         filename=f"{random_track}",
     )
+
+
+@router.get("/search", response_model=list[TrackResponse])
+def search_tracks(query: str, db: Session = Depends(get_db)):
+    tracks = filter_tracks(db, query)
+    return tracks
