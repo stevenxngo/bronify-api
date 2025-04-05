@@ -1,6 +1,6 @@
 # Bronify API
 
-Simple audio streaming API that stores and plays Lebron James' parodies of popular songs, inspired by the TikTok trend.
+Simple audio streaming API that stores and plays Lebron James' parodies of popular songs, inspired by the TikTok trend. This is only a funs side project and is not affiliated with LeBron James, Spotify, or any artists/creators.
 
 ![Bronify Meme](./media/bronify.png?raw=true "Bronify Meme")
 
@@ -16,12 +16,13 @@ Simple audio streaming API that stores and plays Lebron James' parodies of popul
 
 ### Track Endpoints
 
-| Method | Endpoint                 | Description                                     |
-| ------ | ------------------------ | ----------------------------------------------- |
-| `GET`  | `/track/all`             | Returns a list of all tracks with metadata.     |
-| `GET`  | `/track/info/{track_id}` | Returns detailed metadata for a specific track. |
-| `GET`  | `/track/play/{track_id}` | Streams the audio for a specific track.         |
-| `GET`  | `/track/random`          | Streams a random track from the collection.     |
+| Method | Endpoint                      | Description                                     |
+|--------|-------------------------------|-------------------------------------------------|
+| `GET`  | `/track/all`                  | Returns a list of all tracks with metadata.     |
+| `GET`  | `/track/info/{track_id}`      | Returns detailed metadata for a specific track. |
+| `GET`  | `/track/play/{track_id}`      | Streams the audio for a specific track.         |
+| `GET`  | `/track/random`               | Streams a random track from the collection.     |
+| `GET`  | `/track/search?query={query}` | Searches for tracks by title or artist.         |
 
 ### Artist Endpoints
 
@@ -66,6 +67,10 @@ pip install -r requirements.txt
 ```bash
 uvicorn app.main:app --reload
 ```
+
+## Adknowledgements
+- **LeBron James** for being a glorious king and inspiring this project with his greatness.
+- **All the talented TikTok creators** who made the original parodies that inspired this project.
 
 ## License
 
