@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, Path, HTTPException
 from sqlalchemy.orm import Session
-from app.dependencies import get_db
-from app.schemas.artist import ArtistResponse
-from app.schemas.track import TrackResponse
+from app.data.base import get_db
+from app.schemas import TrackResponse, ArtistResponse
 from app.crud.artist import (
     get_all_artists,
     get_artist_info,

@@ -3,7 +3,7 @@ import random
 from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
-from app.dependencies import get_db
+from app.data.base import get_db
 from app.schemas.track import TrackResponse
 from app.crud.track import (
     get_all,

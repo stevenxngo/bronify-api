@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.models import Track, Artist, OriginalArtist
-from app.schemas.track import TrackResponse
+from app.schemas import TrackResponse
 
 
 def get_all(db: Session):
