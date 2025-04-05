@@ -2,9 +2,10 @@ from pathlib import Path
 import pandas as pd
 from sqlalchemy.orm import Session
 from app.data.database import engine, Base
-from app.models.track import Track
-from app.models.artist import Artist
-from app.models.original_artist import OriginalArtist
+from app.models import Track, Artist, OriginalArtist
+from app.log import get_logger
+
+logger = get_logger()
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -54,6 +55,11 @@ def import_csv():
                     format=row["format"],
                     url=row["url"],
                 )
+            )
+        else:
+            logger.info(
+                "Track %s already exists in the database. Skipping.",
+                row["title"],
             )
 
     db.commit()
