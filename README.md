@@ -62,7 +62,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Run the app
+### 4. Downlaod tracks and initialize the database
+
+```bash
+# Download the audio files from TikTok
+python -m app.data.dl_tracks
+
+# Initialize the SQLite database and populate it
+python -m app.data.init_db
+```
+
+### 5. Run the app
 
 ```bash
 uvicorn app.main:app --reload
