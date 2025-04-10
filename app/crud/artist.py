@@ -12,3 +12,16 @@ def get_artist_info(db: Session, artist_id: int):
     if not artist:
         return None
     return artist
+
+
+def search_artists(db: Session, query: str):
+    artists = (
+        db.query(Artist)
+        .filter(Artist.name.ilike(f"%{query}%"))
+        .all()
+    )
+
+    if not artists:
+        return []
+
+    return artists

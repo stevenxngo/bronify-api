@@ -44,7 +44,20 @@ def get__og_artist_tracks(db: Session, og_artist_id: int):
     return [TrackResponse.from_orm(track) for track in tracks]
 
 
-def filter_tracks(db: Session, query: str):
+def search_tracks(db: Session, query: str):
+    tracks = (
+        db.query(Track)
+        .filter(Track.title.ilike(f"%{query}%"))
+        .all()
+    )
+
+    if not tracks:
+        return []
+
+    return [TrackResponse.from_orm(track) for track in tracks]
+
+
+def search_all(db: Session, query: str):
     tracks = (
         db.query(Track)
         .join(Artist)

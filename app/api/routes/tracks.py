@@ -4,13 +4,12 @@ from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from app.data.base import get_db
-from app.schemas.track import TrackResponse
+from app.schemas import TrackResponse
 from app.crud.track import (
     get_all,
     get_track_info,
     get_all_files,
     get_track_file,
-    filter_tracks,
 )
 
 BASE_DIR = PathLib(__file__).resolve().parent.parent.parent
@@ -66,9 +65,3 @@ def play_random_track(db: Session = Depends(get_db)):
         media_type="audio/mpeg",
         filename=f"{random_track}",
     )
-
-
-@router.get("/search", response_model=list[TrackResponse])
-def search_tracks(query: str, db: Session = Depends(get_db)):
-    tracks = filter_tracks(db, query)
-    return tracks

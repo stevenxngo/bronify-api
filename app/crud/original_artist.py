@@ -16,3 +16,16 @@ def get_original_artist_info(db: Session, og_artist_id: int):
     if not og_artist:
         return None
     return og_artist
+
+
+def search_original_artists(db: Session, query: str):
+    original_artists = (
+        db.query(OriginalArtist)
+        .filter(OriginalArtist.name.ilike(f"%{query}%"))
+        .all()
+    )
+
+    if not original_artists:
+        return []
+
+    return original_artists
