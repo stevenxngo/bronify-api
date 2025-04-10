@@ -3,7 +3,7 @@ from app.api.routes import shared, tracks, artists, original_artists
 
 app = FastAPI(title="Bronify")
 
-app.include_router(shared.router, prefix="/shared", tags=["Shared"])
+app.include_router(shared.router, tags=["Search"])
 app.include_router(tracks.router, prefix="/track", tags=["Tracks"])
 app.include_router(
     artists.router,
