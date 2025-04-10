@@ -14,17 +14,24 @@ Simple audio streaming API that stores and plays Lebron James' parodies of popul
 
 ## Endpoints
 
-### Track Endpoints
+### Search
 
-| Method | Endpoint                      | Description                                     |
-|--------|-------------------------------|-------------------------------------------------|
-| `GET`  | `/track/all`                  | Returns a list of all tracks with metadata.     |
-| `GET`  | `/track/info/{track_id}`      | Returns detailed metadata for a specific track. |
-| `GET`  | `/track/play/{track_id}`      | Streams the audio for a specific track.         |
-| `GET`  | `/track/random`               | Streams a random track from the collection.     |
-| `GET`  | `/track/search?query={query}` | Searches for tracks by title or artist.         |
+| Method | Endpoint                                    | Description                                      |
+|--------|---------------------------------------------|--------------------------------------------------|
+| `GET`  | `/search?query={query}&category={category}` | Searches for tracks, artists or orignal artists. |
 
-### Artist Endpoints
+> **Note**: `category` can be `tracks`, `artists`, or `original_artists`. If omitted, all categories will be searched.
+
+### Tracks
+
+| Method | Endpoint                 | Description                                     |
+| ------ | ------------------------ | ----------------------------------------------- |
+| `GET`  | `/track/all`             | Returns a list of all tracks with metadata.     |
+| `GET`  | `/track/info/{track_id}` | Returns detailed metadata for a specific track. |
+| `GET`  | `/track/play/{track_id}` | Streams the audio for a specific track.         |
+| `GET`  | `/track/random`          | Streams a random track from the collection.     |
+
+### Artists
 
 | Method | Endpoint                     | Description                                      |
 | ------ | ---------------------------- | ------------------------------------------------ |
@@ -32,7 +39,7 @@ Simple audio streaming API that stores and plays Lebron James' parodies of popul
 | `GET`  | `/artist/info/{artist_id}`   | Returns detailed metadata for a specific artist. |
 | `GET`  | `/artist/tracks/{artist_id}` | Returns a list of tracks for a specific artist.  |
 
-### Original Artist Endpoints
+### Original Artists
 
 | Method | Endpoint                        | Description                                               |
 | ------ | ------------------------------- | --------------------------------------------------------- |
@@ -79,6 +86,7 @@ uvicorn app.main:app --reload
 ```
 
 ## Adknowledgements
+
 - **LeBron James** for being a glorious king and inspiring this project with his greatness.
 - **All the talented TikTok creators** who made the original parodies that inspired this project.
 
