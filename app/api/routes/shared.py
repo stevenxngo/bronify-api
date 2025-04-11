@@ -1,6 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from app.api.auth import verify_token
 from app.data.base import get_db
 from app.schemas import TrackResponse, ArtistResponse, OriginalArtistResponse
 from app.crud.track import (
@@ -11,7 +12,7 @@ from app.crud.artist import search_artists
 from app.crud.original_artist import search_original_artists
 from app.api.enums import Category
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verify_token)])
 
 
 @router.get(

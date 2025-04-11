@@ -3,6 +3,7 @@ import random
 from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
+from app.api.auth import verify_token
 from app.data.base import get_db
 from app.schemas import TrackResponse
 from app.crud.track import (
@@ -14,7 +15,7 @@ from app.crud.track import (
 
 BASE_DIR = PathLib(__file__).resolve().parent.parent.parent
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verify_token)])
 
 
 @router.get("/all", response_model=list[TrackResponse])

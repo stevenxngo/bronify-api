@@ -1,16 +1,19 @@
 import os
-from fastapi import Security, HTTPException
-from fastapi.security.api_key import APIKeyHeader
 from dotenv import load_dotenv
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 load_dotenv()
 
-API_KEY = os.getenv("BRONIFY_API_KEY")
-API_KEY_NAME = "Authorization"
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+BRONIFY_TOKEN = os.getenv("BRONIFY_TOKEN")
+
+security = HTTPBearer()
 
 
-async def get_api_key(api_key: str = Security(api_key_header)):
-    if api_key != API_KEY:
-        raise HTTPException(status_code=403, detail="Unauthorized")
-    return api_key
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if credentials.credentials != BRONIFY_TOKEN:
+        print("Credentials:", credentials.credentials)
+        print("Expected Token:", BRONIFY_TOKEN)
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Invalid token"
+        )

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, Path, HTTPException
 from sqlalchemy.orm import Session
+from app.api.auth import verify_token
 from app.data.base import get_db
 from app.schemas import TrackResponse, OriginalArtistResponse
 from app.crud.original_artist import (
@@ -8,7 +9,7 @@ from app.crud.original_artist import (
 )
 from app.crud.track import get__og_artist_tracks
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verify_token)])
 
 
 @router.get("/all", response_model=list[OriginalArtistResponse])
