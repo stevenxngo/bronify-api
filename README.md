@@ -85,6 +85,12 @@ python -m app.data.init_db
 uvicorn app.main:app --reload
 ```
 
+## Usage and Authentication
+
+All endpoints require a bearer token for access which must be added to the `Authorization` header of your requests. The token can be customized by setting the `BRONIFY_TOKEN` environment variable.
+
+
+
 ## Adknowledgements
 
 - **LeBron James** for being a glorious king and inspiring this project with his greatness.
