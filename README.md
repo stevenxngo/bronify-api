@@ -1,6 +1,6 @@
 # Bronify API
 
-Simple audio streaming API that stores and plays Lebron James' parodies of popular songs, inspired by the TikTok trend. This is only a funs side project and is not affiliated with LeBron James, Spotify, or any artists/creators.
+Simple audio streaming API that stores and plays Lebron James' parodies of popular songs, inspired by the TikTok trend. This is only a fun side project and is not affiliated with LeBron James, Spotify, or any artists/creators.
 
 ![Bronify Meme](./media/bronify.png?raw=true "Bronify Meme")
 
@@ -69,7 +69,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Downlaod tracks and initialize the database
+### 4. Download tracks and initialize the database
 
 ```bash
 # Download the audio files from TikTok
